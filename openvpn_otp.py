@@ -16,7 +16,7 @@ def main():
     child.logfile = sys.stdout.buffer
     child.expect("CHALLENGE: Verification code:")
     child.sendline(
-        mintotp.totp(Path(os.environ["OPENVPN_OTP_SECRET_FILE"]).read_text())
+        mintotp.totp(Path(os.environ["OPENVPN_OTP_SECRET_FILE"]).read_text().strip())
     )
     # macos - python script: pexpect hangs on child.wait()? - Stack Overflow
     # https://stackoverflow.com/questions/58751357/python-script-pexpect-hangs-on-child-wait
